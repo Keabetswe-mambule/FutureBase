@@ -1,6 +1,6 @@
-//only 1 database instance is stored
+//only 1 base instance is stored
 let baseInstance = {};
-let current_base = null;
+
 const FutureBase = {
   //create JSON file to hold data
   createBase: (base_name) => {
@@ -81,8 +81,8 @@ const FutureBase = {
   //returns currently highlighted base
   getCurrentBase() {
     return new Promise((resolve, reject) => {
-      if (current_base != null) {
-        resolve(current_base);
+      if (baseInstance.current_base != null) {
+        resolve(baseInstance.current_base);
       } else {
         reject("No base highlighted");
       }
