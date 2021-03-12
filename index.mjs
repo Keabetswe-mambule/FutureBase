@@ -1,14 +1,45 @@
 //only 1 base instance is stored
+import { access, readFile, writeFile } from "fs";
+import { resolve } from "node:path";
+
 let baseInstance = {};
 
 const FutureBase = {
   //create JSON file to hold data
   createBase: (base_name) => {
     return new Promise((resolve, reject) => {
-      if (somethingSuccesfulHappend) {
-        resolve();
-      } else {
-        reject();
+      try {
+        //check if base exists if exists return error else create one
+        access(`base/${base_name}.json`, (err) => {
+          if (!err) {
+            reject(`${base_name} already exists`);
+          } else {
+            //create json file to store data
+            writeFile(
+              `base/${base_name}.json`,
+              `{"base_name":"${base_name}"}`,
+              (err) => {
+                if (err) {
+                  reject(`${base_name} creation failed ${err}`);
+                } else {
+                  //captcher base instance from base
+                  readFile(`base/${base_name}.json`, "utf8", (err, data) => {
+                    if (err) {
+                      reject(`${base_name} creation failed ${err}`);
+                    } else {
+                      baseInstance = JSON.parse(data);
+                      resolve(`${base_name} created`);
+                    }
+                  });
+                }
+              }
+            );
+          }
+        });
+      } catch (err) {
+        return new Promise((resolve, reject) => {
+          reject(`${base_name} creation failed ${err}`);
+        });
       }
     });
   },
@@ -81,8 +112,8 @@ const FutureBase = {
   //returns currently highlighted base
   getCurrentBase() {
     return new Promise((resolve, reject) => {
-      if (baseInstance.current_base != null) {
-        resolve(baseInstance.current_base);
+      if (baseInstance.base_name != null) {
+        resolve(baseInstance.base_name);
       } else {
         reject("No base highlighted");
       }
@@ -90,4 +121,20 @@ const FutureBase = {
   },
 };
 
-modules.exports.FutureBase = FutureBase;
+FutureBase.createBase("recipes")
+  .then((res) => {
+    console.log(`${res} created`);
+    FutureBase.getCurrentBase()
+      .then((res) => {
+        console.log(`${res} is now highlighted`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+//const _FutureBase = FutureBase;
+//export { _FutureBase as FutureBase };
