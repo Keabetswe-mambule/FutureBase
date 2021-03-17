@@ -1,6 +1,5 @@
 //only 1 base instance is stored
 import { access, readFile, writeFile } from "fs";
-import { resolve } from "node:path";
 
 let baseInstance = {};
 

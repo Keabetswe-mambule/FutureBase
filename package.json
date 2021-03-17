@@ -1,0 +1,27 @@
+{
+  "name": "futurebase",
+  "version": "1.0.0",
+  "description": "A JavaScript based NoSQL database",
+  "main": "futurebase.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keabetswe-mambule/FutureBase.git"
+  },
+  "keywords": [
+    "JavaScript Database",
+    "NoSQL Database",
+    "Local storage",
+    "Database",
+    "Cordova",
+    "Cross platform"
+  ],
+  "author": "Keabetswe Thomas Mambule",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Keabetswe-mambule/FutureBase/issues"
+  },
+  "homepage": "https://github.com/Keabetswe-mambule/FutureBase#readme"
+}

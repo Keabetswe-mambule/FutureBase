@@ -1,5 +1,7 @@
 # What is FutureBase
 
+Platform independent JavaScript based NoSQL database
+
 # How to use FutureBase?
 
 add installation and dependencies here
