@@ -1,6 +1,6 @@
 # What is FutureBase
 
-Platform independent JavaScript based NoSQL database
+Platform independent JavaScript NoSQL database
 
 # How to use FutureBase?
 
